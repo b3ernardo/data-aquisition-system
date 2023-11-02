@@ -150,8 +150,8 @@ public:
 private:
     void accept() {
         acceptor_.async_accept(
-            [this](boost::system::error_code ec, tcp::socket socket) {
-                if (!ec) {
+            [this](boost::system::error_code error, tcp::socket socket) {
+                if (!error) {
                     make_shared<session>(move(socket))->start();
                 };
                 accept();
